@@ -362,4 +362,6 @@ line-height: 1.428571429;
    
 }
 
-
+.botones {
+    float: right;
+}
