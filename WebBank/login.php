@@ -14,22 +14,26 @@
     <div class="input">
       <div class="inputBox">
         <label for="User">Nombre de Usuario</label>
-        <input type="text" id="user" placeholder="Username">
+        <input type="text" id="cedula" placeholder="Cedula">
       </div>
       <div class="inputBox">
         <label for="User">Contrase&ntilde;a</label>
         <input type="password" id="pass" placeholder="*******">
       </div>
       <div class="inputBox">
-        <input type="button" id="enviar" value="Enviar">
+        <input type="button" id="ingresar" value="Ingresar">
       </div>
     </div>
     
     <p class="recuperar"><a href="#">Olvide mi contrase&ntilde;a</a></p>
   </div>
+    
   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
   <script src="assets/js/jquery-3.5.1.js"></script>
   <script src="assets/js/alertify.js"></script>
+  <script src="assets/js/clave.js"></script>
+  <script src="assets/js/validacion.js"></script>
   <script src="assets/js/script.js"></script>
+  
 </body>
 </html>

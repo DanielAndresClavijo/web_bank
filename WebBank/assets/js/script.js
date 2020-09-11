@@ -1,24 +1,31 @@
-$("#enviar").click(function(event){
-  var username = document.getElementById("user").value.trim();
-  var password = document.getElementById("pass").value.trim();
-  if(username != '' && password != '') {
-    username = CryptoJS.MD5(username);
-    password = CryptoJS.MD5(username);
-    cadena="username=" + username + 
-    "&password=" + password;
-    $.ajax({
-      type:"POST",
-      url:"assets/controller/val_login.php",
-      data:cadena,
-      success:function(r){//Esta funcion recibe el valor retornado
-        if(r==1){//Se valida si el valor retornado es igual a 1, pues esto es el resultado de la consulta sql, si se ejecuto sin ningun problema
-            $('#tabladoc').load('docente/componentes/tabla.php');//Cargar la tabla donde estan los registros de de docente
-            alertify.alert('Logueado con exito!', function(){ alertify.success('Ok'); });
-        }else{
-          alertify.alert('Error!', function(){ alertify.success('Ok'); });
-        }
-      }
-    });
+var key = new clave();
+var validacion = new validacion();
+
+$("#ingresar").click(function(event){
+  var cedula = document.getElementById("cedula").value.trim();
+  var password = document.getElementById("pass").value.trim();  
+  if(cedula != '' && password != '') {
+    if(validacion.solonumeros(cedula)){
+        cedula = CryptoJS.AES.encrypt(cedula, key);       
+        password = CryptoJS.AES.encrypt(password, key);
+        cadena="cedula=" + cedula + 
+        "&password=" + password;
+        $.ajax({
+          type:"POST",
+          url:"assets/controller/val_login.php",
+          data:cadena,
+          success:function(r){//Esta funcion recibe el valor retornado
+            if(r==1){//Se valida si el valor retornado es igual a 1, pues esto es el resultado de la consulta sql, si se ejecuto sin ningun problema
+                $('#tabladoc').load('docente/componentes/tabla.php');//Cargar la tabla donde estan los registros de de docente
+                alertify.alert('Logueado con exito!', function(){ alertify.success('Ok'); });
+            }else{
+              alertify.alert('Error!', function(){ alertify.success('Ok'); });
+            }
+          }
+        });
+    }else{
+        alert("no es numero");
+    }    
   }else{
     console.log('No se enviaron datos');
   }
