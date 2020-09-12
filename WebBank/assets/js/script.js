@@ -1,12 +1,16 @@
-var key = new clave();
-var validacion = new validacion();
+var key = clave();
+//var validacion = new validacion();
 
 $("#ingresar").click(function(event){
   var cedula = document.getElementById("cedula").value.trim();
   var password = document.getElementById("pass").value.trim();  
-  if(cedula != '' && password != '') {
+  if( cedula != '' && password != '' && 
+      validar.numeroCedula(cedula) &&
+      validar.contrasenna(password)) {
+    //alert(validar.siNoEstaVacio(cedula));
     cedula = CryptoJS.AES.encrypt(cedula, key);       
     password = CryptoJS.AES.encrypt(password, key);
+    alert(password);
     cadena="cedula=" + cedula + 
     "&password=" + password;
     $.ajax({
@@ -15,15 +19,15 @@ $("#ingresar").click(function(event){
       data:cadena,
       success:function(r){//Esta funcion recibe el valor retornado
         if(r==1){//Se valida si el valor retornado es igual a 1, pues esto es el resultado de la consulta sql, si se ejecuto sin ningun problema
-            $('#tabladoc').load('docente/componentes/tabla.php');//Cargar la tabla donde estan los registros de de docente
-            alertify.alert('Logueado con exito!', function(){ alertify.success('Ok'); });
+            alertify.success('Logueado con exito :)');
+            window.location='/assets/index.html';
         }else{
-          alertify.alert('Error!', function(){ alertify.success('Ok'); });
+          alertify.error('Usuario no encontrado');
         }
       }
     });  
   }else{
-    console.log('No se enviaron datos');
+    alertify.error('Datos incorrectos');
   }
 });
 

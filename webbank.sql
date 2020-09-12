@@ -22,6 +22,8 @@ SET time_zone = "+00:00";
 -- Base de datos: `webbank`
 --
 
+CREATE database `webbank` CHARACTER SET utf8 COLLATE utf8_general_ci;;
+use `webbank`;
 -- --------------------------------------------------------
 
 --

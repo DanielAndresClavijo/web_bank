@@ -13,8 +13,8 @@
     <h2>Login</h2>
     <div class="input">
       <div class="inputBox">
-        <label for="User">Nombre de Usuario</label>
-        <input type="text" id="cedula" placeholder="Cedula">
+        <label for="User">Cedula</label>
+        <input  type="text" id="cedula" placeholder="Cedula">
       </div>
       <div class="inputBox">
         <label for="User">Contrase&ntilde;a</label>
@@ -27,9 +27,9 @@
     
     <p class="recuperar"><a href="#">Olvide mi contrase&ntilde;a</a></p>
   </div>
-    
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
-  <script src="assets/js/jquery-3.5.1.js"></script>
+  <script src="assets/js/jquery-3.5.1.js"></script>  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js" integrity="sha512-nOQuvD9nKirvxDdvQ9OMqe2dgapbPB7vYAMrzJihw5m+aNcf0dX53m6YxM4LgA9u8e9eg9QX+/+mPu8kCNpV2A==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/aes.min.js" integrity="sha512-eqbQu9UN8zs1GXYopZmnTFFtJxpZ03FHaBMoU3dwoKirgGRss9diYqVpecUgtqW2YRFkIVgkycGQV852cD46+w==" crossorigin="anonymous"></script>
   <script src="assets/js/alertify.js"></script>
   <script src="assets/js/clave.js"></script>
   <script src="assets/js/validacion.js"></script>
