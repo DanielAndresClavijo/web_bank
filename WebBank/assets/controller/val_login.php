@@ -7,7 +7,7 @@ if(isset($_POST['username']) && isset($_POST['password'])){
 
   $mysql = new MySQL(); //se declara un nuevo array
   $mysql->conectar();
-  $cedcontra = $mysql->efectuarConsulta("select AES_DECRYPT(`numero_cedula`,'encriptacion 123456') as cedula, AES_DECRYPT(`contrasena`,'encriptacion 123456') as contrasena, primer_nombre, primer_apellido from `usuario` where `numero_cedula` = '".$ced."' AND `contrasena` = '".$pass."'");   
+  $cedcontra = $mysql->efectuarConsulta("select usuario, contrasena from `usuario` where `numero_cedula` = '".$ced."' AND `contrasena` = '".$pass."'");   
   if (mysqli_num_rows($cedcontra) > 0){ 
     while ($resultado= mysqli_fetch_assoc($cedcontra)){
         $cedula= $resultado["cedula"];

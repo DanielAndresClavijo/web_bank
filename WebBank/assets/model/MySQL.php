@@ -1,16 +1,17 @@
 <?php
- class MySQL{
+ class MySQL{    
+    //Declaracion de variables de conexion
+    private $hostname  = "localhost";
+    private $user = "root";
+    private $password = "";
+    private $puerto = "3306";
+    private $database = "webbank";
     
-    //Datos de validacion para la conexion
-    private $ipServidor ="localhost";
-    private $usuarioBase ='root';
-    private $contrasena = '';
-
     private $conexion;
-
-    //Metodo para conectar la base de datos
+    
+    // Metodo para conectar a la base de datos
     public function conectar(){
-        $this->conexion = mysqli_connect($this->ipServidor, $this->usuarioBase, $this->contrasena);
+        $this->conexion = mysqli_connect($this->hostname, $this->user, $this->password, $this->database);
     }
 
     public function conexionBD($nombreBD){
@@ -35,7 +36,7 @@
      
         
         return $this->resultadoConsulta; 
-    }
+    }       
 }
 
 ?>

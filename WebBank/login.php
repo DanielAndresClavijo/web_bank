@@ -22,10 +22,10 @@
       </div>
       <div class="inputBox">
         <input type="button" id="ingresar" value="Ingresar">
-      </div>
+      </div>      
     </div>
     
-    <p class="recuperar"><a href="#">Olvide mi contrase&ntilde;a</a></p>
+    <p class="recuperar"><a href="register.php">Registrarme</a></p>
   </div>
   <script src="assets/js/jquery-3.5.1.js"></script>  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js" integrity="sha512-nOQuvD9nKirvxDdvQ9OMqe2dgapbPB7vYAMrzJihw5m+aNcf0dX53m6YxM4LgA9u8e9eg9QX+/+mPu8kCNpV2A==" crossorigin="anonymous"></script>
