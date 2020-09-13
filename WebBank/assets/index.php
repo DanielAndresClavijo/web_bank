@@ -31,7 +31,7 @@
             </div>
             <div style="color: white;padding: 15px 50px 5px 50px;float: right;font-size: 16px;"> 
                 
-                <a href="#" class="btn btn-danger square-btn-adjust">Cerrar Sesi&oacute;n</a> 
+                <a href="#" id="cerrarsesion" class="btn btn-danger square-btn-adjust">Cerrar Sesi&oacute;n</a> 
             </div>
         </nav>   
         <!-- FIXME: /. NAV TOP - MENU SUPERIOR -->

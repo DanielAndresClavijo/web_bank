@@ -5,7 +5,6 @@ $("#ingresar").click(function(event){
       validar.numeroCedula(cedula) &&
       validar.contrasenna(password)) {
     cedula = btoa(cedula);
-    alert(cedula);
     password = btoa(password);
     cadena="cedula=" + cedula + 
     "&password=" + password;
@@ -16,7 +15,7 @@ $("#ingresar").click(function(event){
         success:function(r){//Esta funcion recibe el valor retornado
             if(r==1){//Se valida si el valor retornado es igual a 1, pues esto es el resultado de la consulta sql, si se ejecuto sin ningun problema
                 alertify.success('Logueado con exito :)');
-                window.location='./assets/index.html';
+                setTimeout(function(){ window.location = './assets/index.php';}, 1000);
             }else if(r==0){
               alertify.error('Usuario no encontrado');
             }else if(r=="consultaVacia"){
@@ -58,8 +57,8 @@ $("#registrar").click(function(event){
       data:cadena,
       success:function(r){//Esta funcion recibe el valor retornado
         if(r==1){//Se valida si el valor retornado es igual a 1, pues esto es el resultado de la consulta sql, si se ejecuto sin ningun problema
-            alertify.success('Logueado con exito');            
-            window.location='login.php';
+            alertify.success('Registrado con exito');    
+            setTimeout(function(){ window.location = 'index.php';}, 1000);
         }else{
           alertify.error('No se pudo registrar');
         }
@@ -69,3 +68,6 @@ $("#registrar").click(function(event){
     alertify.notify('Faltan campos por llenar', 'alert', 5);
   }
 });
+
+
+
