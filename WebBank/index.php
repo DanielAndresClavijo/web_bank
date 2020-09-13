@@ -1,3 +1,13 @@
+<?php
+session_start();
+if(isset($_POST['cerrar_session']) && $_POST['cerrar_session'] == '1'){//Se valida si existe la varible de cerrar sesion, esta se envia cuando se cierra sesion en algun perfil abierto
+    session_unset();//libera todas las variables de sesión actualmente registradas
+    session_destroy();//Destruye toda la información registrada de la sesión
+}
+if(isset($_SESSION['id'])){
+         header("location: assets/index.php");
+    }
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -28,9 +38,7 @@
     <p class="recuperar"><a href="register.php">Registrarme</a></p>
   </div>
   <script src="assets/js/jquery-3.5.1.js"></script>  
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js" integrity="sha512-nOQuvD9nKirvxDdvQ9OMqe2dgapbPB7vYAMrzJihw5m+aNcf0dX53m6YxM4LgA9u8e9eg9QX+/+mPu8kCNpV2A==" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/aes.min.js" integrity="sha512-eqbQu9UN8zs1GXYopZmnTFFtJxpZ03FHaBMoU3dwoKirgGRss9diYqVpecUgtqW2YRFkIVgkycGQV852cD46+w==" crossorigin="anonymous"></script>
-  <script src="assets/js/alertify.js"></script>
+    <script src="assets/js/alertify.js"></script>
   <script src="assets/js/validacion.js"></script>
   <script src="assets/js/script.js"></script>
   

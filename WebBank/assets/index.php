@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+<?php
+    session_start();//Inicio de sesion
+    if(!isset($_SESSION['id'])){
+         header("location: ./index.php");
+    }
+    ?>
+    <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="utf-8" />
@@ -31,7 +37,7 @@
             </div>
             <div style="color: white;padding: 15px 50px 5px 50px;float: right;font-size: 16px;"> 
                 
-                <a href="#" id="cerrarsesion" class="btn btn-danger square-btn-adjust">Cerrar Sesi&oacute;n</a> 
+                <a href="#" id="cerrar_session" class="btn btn-danger square-btn-adjust">Cerrar Sesi&oacute;n</a> 
             </div>
         </nav>   
         <!-- FIXME: /. NAV TOP - MENU SUPERIOR -->
@@ -133,7 +139,8 @@
 
     <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
     <!-- JQUERY SCRIPTS -->
-    <script src="js/jquery-1.10.2.js"></script>
+    <script src="js/jquery-3.5.1.js"></script> 
+    <script src="js/alertify.js"></script>
       <!-- BOOTSTRAP SCRIPTS -->
     <script src="js/bootstrap.min.js"></script>
     <!-- METISMENU SCRIPTS -->
@@ -141,7 +148,9 @@
     <!-- DATA TABLE SCRIPTS -->
     <script src="js/dataTables/jquery.dataTables.js"></script>
     <script src="js/dataTables/dataTables.bootstrap.js"></script>
-      <!-- CUSTOM SCRIPTS -->
-    <script src="js/custom.js"></script>
+      <!-- CUSTOM SCRIPTS -->    
+    <script src="js/custom.js"></script> 
+    <script src="js/script.js"></script>
 </body>
 </html>
+
