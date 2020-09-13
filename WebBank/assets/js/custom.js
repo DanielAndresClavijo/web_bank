@@ -38,25 +38,25 @@
 
 document.getElementById("transferir").addEventListener("click", function(event){
     event.preventDefault();
-    $("#view").load("./assets/pages/transferir.html");
+    $("#view").load("pages/transferir.html");
 });
 
 document.getElementById("depositar").addEventListener("click", function(event){
     event.preventDefault();
-    $("#view").load("./assets/pages/depositar.html");
+    $("#view").load("pages/depositar.html");
 });
 
 document.getElementById("retirar").addEventListener("click", function(event){
     event.preventDefault();
-    $("#view").load("./assets/pages/retirar.html");
+    $("#view").load("pages/retirar.html");
 });
 
 document.getElementById("consultar").addEventListener("click", function(event){
     event.preventDefault();
-    $("#view").load("./assets/pages/consultar.html");
+    $("#view").load("pages/consultar.html");
 });
 
 document.getElementById("historial").addEventListener("click", function(event){
     event.preventDefault();
-    $("#view").load("./assets/pages/historial.html");
+    $("#view").load("pages/historial.html");
 });

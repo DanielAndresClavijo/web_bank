@@ -1,30 +1,28 @@
-var key = clave();
-//var validacion = new validacion();
-
 $("#ingresar").click(function(event){
   var cedula = document.getElementById("cedula").value.trim();
   var password = document.getElementById("pass").value.trim();  
   if( cedula != '' && password != '' && 
       validar.numeroCedula(cedula) &&
       validar.contrasenna(password)) {
-    //alert(validar.siNoEstaVacio(cedula));
-    cedula = CryptoJS.AES.encrypt(cedula, key);   
-    password = CryptoJS.AES.encrypt(password, key);
-    alert(password);
+    cedula = btoa(cedula);
+    alert(cedula);
+    password = btoa(password);
     cadena="cedula=" + cedula + 
     "&password=" + password;
     $.ajax({
-      type:"POST",
-      url:"assets/controller/val_login.php",
-      data:cadena,
-      success:function(r){//Esta funcion recibe el valor retornado
-        if(r==1){//Se valida si el valor retornado es igual a 1, pues esto es el resultado de la consulta sql, si se ejecuto sin ningun problema
-            alertify.success('Logueado con exito :)');
-            window.location='/assets/index.html';
-        }else{
-          alertify.error('Usuario no encontrado');
+        type:"POST",
+        url:"assets/controller/val_login.php",
+        data:cadena,
+        success:function(r){//Esta funcion recibe el valor retornado
+            if(r==1){//Se valida si el valor retornado es igual a 1, pues esto es el resultado de la consulta sql, si se ejecuto sin ningun problema
+                alertify.success('Logueado con exito :)');
+                window.location='./assets/index.html';
+            }else if(r==0){
+              alertify.error('Usuario no encontrado');
+            }else if(r=="consultaVacia"){
+              alertify.error('Consulta vacia');
+            }
         }
-      }
     });  
   }else{
     alertify.error('Datos incorrectos');
@@ -42,12 +40,12 @@ $("#registrar").click(function(event){
   if(name1 != '' &&  name3 != '' && cedula != '' && password != '' && password2 != ''
         && validar.numeroCedula(cedula) && validar.siEsLaMismaContrasenna(password, password2) 
         && cedula){
-    cedula = CryptoJS.AES.encrypt(cedula, key);
-    name1 = CryptoJS.AES.encrypt(name1, key);
-    name2 = CryptoJS.AES.encrypt(name2, key);
-    name3 = CryptoJS.AES.encrypt(name3, key);
-    name4 = CryptoJS.AES.encrypt(name4, key);
-    password = CryptoJS.AES.encrypt(password, key);
+    cedula = btoa(cedula);
+    name1 = btoa(name1);
+    name2 = btoa(name2);
+    name3 = btoa(name3);
+    name4 = btoa(name4);
+    password = btoa(password);
     cadena="cedula=" + cedula + 
     "&name1=" + name1 +
     "&name2=" + name2 + 
@@ -60,7 +58,7 @@ $("#registrar").click(function(event){
       data:cadena,
       success:function(r){//Esta funcion recibe el valor retornado
         if(r==1){//Se valida si el valor retornado es igual a 1, pues esto es el resultado de la consulta sql, si se ejecuto sin ningun problema
-            alertify.success('Logueado con exito :)');
+            alertify.success('Logueado con exito');            
             window.location='login.php';
         }else{
           alertify.error('No se pudo registrar');
