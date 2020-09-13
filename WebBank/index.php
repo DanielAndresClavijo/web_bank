@@ -1,13 +1,12 @@
 <?php
 session_start();
 if(isset($_POST['cerrar_session']) && $_POST['cerrar_session'] == '1'){//Se valida si existe la varible de cerrar sesion, esta se envia cuando se cierra sesion en algun perfil abierto
-    $_SESSION = array(); // Destroy the variables
-    session_unset();
-    session_write_close();
+    session_unset();    
     session_destroy(); // Destroy the session
-}else if(isset($_SESSION['id'])){
-         header("location: assets/index.php");
 }
+if(isset($_SESSION['id'])){
+         header("location: assets/index.php");
+    }
 ?>
 <!DOCTYPE html>
 <html lang="es">

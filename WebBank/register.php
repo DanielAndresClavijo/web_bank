@@ -1,3 +1,9 @@
+<?php
+    session_start();//Inicio de sesion
+    if(isset($_SESSION['id'])){
+        header("location: assets/index.php");
+    }    
+    ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>

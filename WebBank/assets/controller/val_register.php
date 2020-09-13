@@ -1,5 +1,4 @@
 <?php 
-
 if(isset($_POST['cedula']) && isset($_POST['name1']) && isset($_POST['name3']) && isset($_POST['password'])){
     require_once '../model/MySQL.php'; 
     //Encriptada
