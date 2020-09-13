@@ -1,7 +1,7 @@
 <?php
     session_start();//Inicio de sesion
     if(!isset($_SESSION['id'])){
-         header("location: ./index.php");
+        header("location: index.php");
     }
     ?>
     <!DOCTYPE html>
@@ -12,14 +12,19 @@
     <title>Web Bank</title>
     <!-- BOOTSTRAP STYLES-->
     <link href="css/bootstrap.css" rel="stylesheet" />
+    
+    <link rel="stylesheet" href="css/alertify/alertify.css">
+    <link rel="stylesheet" href="css/alertify/bootstrap.css">
      <!-- FONTAWESOME STYLES-->
     <link href="css/font-awesome.css" rel="stylesheet" />
     <!-- CUSTOM STYLES-->
     <link href="css/custom.css" rel="stylesheet" />
+    
     <!-- GOOGLE FONTS-->
    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
    <!-- TABLE STYLES-->
   <link href="js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
+  
 </head>
 <body>
     <!-- WRAPPER  -->
@@ -37,7 +42,7 @@
             </div>
             <div style="color: white;padding: 15px 50px 5px 50px;float: right;font-size: 16px;"> 
                 
-                <a href="#" id="cerrar_session" class="btn btn-danger square-btn-adjust">Cerrar Sesi&oacute;n</a> 
+                <a id="cerrar_session" class="btn btn-danger square-btn-adjust">Cerrar Sesi&oacute;n</a> 
             </div>
         </nav>   
         <!-- FIXME: /. NAV TOP - MENU SUPERIOR -->

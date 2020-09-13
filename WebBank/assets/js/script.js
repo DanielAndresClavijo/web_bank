@@ -70,21 +70,16 @@ $("#registrar").click(function(event){
 });
 
 $('#cerrar_session').click(function() {
-    event.preventDefault();
-   alertify.confirm('Cerrar Sesion', '¿Esta seguro que desea cerrar sesion?', 
-   function(){ 
-       cadena="cerrar_session=" + 1;
-       $.ajax({
-           type:"POST",
-           url:"./index.php",
-           data:cadena,
-           success:function(r){
-               alertify.success("Sesion cerrada!");
-               setTimeout(function(){ window.location = './index.php';}, 1000);
-           }
-       });
-   }
-   ,function(){ alertify.error('Cancelado')});
+    cadena="cerrar_session=" + 1;
+    $.ajax({
+        type:"POST",
+        url:"../index.php",
+        data:cadena,
+        success:function(r){
+            alertify.success("Sesion cerrada!");
+            setTimeout('location.reload()',1000);
+        }
+    });
 
 });
 
