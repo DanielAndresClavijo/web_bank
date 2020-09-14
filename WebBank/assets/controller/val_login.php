@@ -7,6 +7,7 @@ if(isset($_POST['cedula']) && isset($_POST['password'])){
 
     $mysql = new MySQL(); //se declara un nuevo array
     $mysql->conectar();
+    //ejecucion de consulta
     $cedcontra = $mysql->efectuarConsulta("select id_usuario, primer_nombre, primer_apellido from `usuario` where `numero_cedula` = '".$ced."' AND `contrasena` = '".$pass."'");   
     if(!empty($cedcontra)){
         if (mysqli_num_rows($cedcontra) > 0){ 

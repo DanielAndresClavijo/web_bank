@@ -1,7 +1,7 @@
 <?php
     session_start();//Inicio de sesion
     if(!isset($_SESSION['id'])){
-        header("location: ../index.php");
+        header("location: ../index.php"); //no permite que se entre a las demas vistas por medio de la url
     }
     ?>
     <!DOCTYPE html>
@@ -55,7 +55,9 @@
                     <li class="text-center">
                         <img src="img/find_user.png" class="user-image img-responsive"/>
                     </li>
-                    <!-- /. Logo usuario  -->                   
+                    <!-- /. Logo usuario  -->   
+                    <!--los botones funcionan gracias al custom.js - este se encarga que dependiendo de la clase que
+                    tenga el boton haga su respectiva funcion, en este caso es la redireccion a la pagina correspondiente-->                
                     <li>
                         <a href="#" class="active-menu" id="transferir"><i class="fa fa fa-arrow-circle-up fa-3x"></i>Transferir</a>
                     </li>

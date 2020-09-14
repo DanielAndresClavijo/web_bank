@@ -11,6 +11,7 @@ if(isset($_POST['cedula']) && isset($_POST['name1']) && isset($_POST['name3']) &
     
     $mysql = new MySQL(); //se declara un nuevo array
     $mysql->conectar();
+    //ejecucion de la consulta
     $cedcontra = $mysql->efectuarConsulta("insert into usuario (numero_cedula, contrasena, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido) values('".$cedula."', '".$password."','".$name1."','".$name2."','".$name3."','".$name4."')");   
     if($cedcontra){
         echo "1";
