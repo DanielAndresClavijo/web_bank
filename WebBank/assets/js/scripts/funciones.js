@@ -10,8 +10,8 @@ $("#ingresar").click(function(event){
   //En la variable validar es como un arreglo que guarda los metodos que van a 
   //servir para validar las variables
   if( cedula != '' && password != '' && 
-      validar.numeroCedula(cedula) &&
-      validar.contrasenna(password)) {
+    validar.numeroCedula(cedula) &&
+    validar.contrasenna(password)) {
     //Encriptacion de las variables ingresadas por el usuario en base64
     cedula = btoa(cedula);
     password = btoa(password);
@@ -85,8 +85,6 @@ $("#registrar").click(function(event){
         resultado = 1;//Resultado pasaria a ser igual a 1, lo que significa que no se realizara el registro
       }       
     }
-    console.log(cadena);
-    console.log(resultado);
     //Se valida que el resultado sea 0, lo que significa que las validaciones han salido exitosas (Han retornado TRUE)
     if (resultado == 0) {
         $.ajax({

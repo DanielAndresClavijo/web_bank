@@ -17,7 +17,7 @@
           Aquí puedes transferir dinero a otras cuentas que tenga vínculo con Web Bank.
       </div>
       <div class="panel-footer">
-          <button id="btntransferir" type="button" class="btn btn-lg btn-block btn-danger">Ir allí</button>
+          <button onclick="btntransferir()" type="button" class="btn btn-lg btn-block btn-danger">Ir allí</button>
       </div>
   </div>
 </div>
@@ -31,7 +31,7 @@
           Puedes depositar el monto deseado desde 1000 pesos a la cuenta que quieras sin costo.
       </div>
       <div class="panel-footer">
-          <button id="btndepositar" type="button" class="btn btn-lg btn-block btn-danger">Ir allí</button>
+          <button onclick="btndepositar()" type="button" class="btn btn-lg btn-block btn-danger">Ir allí</button>
       </div>
   </div>
 </div>
@@ -45,7 +45,7 @@
           Con Web Bank tienes la libertidad de escoger el momento y lugar de retirar.
       </div>
       <div class="panel-footer">
-          <button id="btnretirar" type="button" class="btn btn-lg btn-block btn-danger">Ir allí</button>
+          <button onclick="btnretirar()" type="button" class="btn btn-lg btn-block btn-danger">Ir allí</button>
       </div>
   </div>
 </div>

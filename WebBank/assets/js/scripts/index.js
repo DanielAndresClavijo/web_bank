@@ -77,7 +77,11 @@ $('#cerrar_session').click(function() {
     
 });
 
-//Variables para manejar el menu lateral izquierdo
+/*======================================================
+    FUNCIONES QUE CAPTURAN LOS CLICK DEL MENU LATERAL
+                        IZQUIERDO
+========================================================*/
+
 //Array que contiene los id de los procedimientos que ejecuta el menu lateral
 var ids = ['transferir','depositar','retirar','consultar','historial'];
 //Se captura en variables los id del array
@@ -101,8 +105,7 @@ transferir.addEventListener("click", function(event){
         }else{//De lo contrrio, le quita la clase active-menu
             $("#"+ids[i]+"").removeClass("active-menu")
         }
-    }
-    //La case active-menu sirve para dar color rojo a la opcion seleccionada del menu
+    }//La case active-menu sirve para dar color rojo a la opcion seleccionada del menu
 });
 
 //Funcion que se ejecutal al dar click en la opcion del menu depositar
@@ -177,69 +180,93 @@ historial.addEventListener("click", function(event){
     //La case active-menu sirve para dar color rojo a la opcion seleccionada del menu
 });
 
-//Resulta que la siguiente funcion se debio colocar con un tiempo de
-//ejecucion de 1 segundo, ya que con los elementos que se iba a interactuar
-//se cargaban mucho despues de declarar las variables, entonces las funciones 
-//estaban dando error porque decia que aun no se habia encontrado el elemento seleccionado
-//con este delay de 1 segundo, se garantiza la interaccion de los elementos cargados por .load
+/*====================================
+    FUNCIONES
+======================================*/
 
-setTimeout(function(){ 
-    //Variables para almacenar los ids de los botones de la pagina
-    //de presentacion
-    var btntransferir = document.getElementById("btntransferir");
-    var btndepositar = document.getElementById("btndepositar");
-    var btnretirar = document.getElementById("btnretirar");
-    //Funcion que se ejecutal al dar click en el boton transferir de la presentacion
-    btntransferir.addEventListener("click", function(event){
-        event.preventDefault();//Previene que la etiqueta "a" ejecute el href
-        $("#view").load("pages/transferir.php");//Cargar en la etiqueta con id view la vista solicitada
-        //EL siguiete for va a recorrer el arreglo que contiene el nombre de los
-        //id de las opciones del meu lateral, este for lo que hara sera cambiar
-        //las clases de cada elemento seleccionado, esto sirve para que cuando el usuario
-        //precione alguna opcion, esta se quede seleccionada con el color rojo
-        for (var i = 0; i < ids.length; i++) {
-            if (ids[i] == ids[0]) {//Si verdadero, se agrega la clase active-menu
-                $("#"+ids[i]+"").addClass("active-menu");
-            }else{//De lo contrrio, le quita la clase active-menu
-                $("#"+ids[i]+"").removeClass("active-menu")
+function submittransferir(){
+    var monto = document.getElementById("monto").value.trim();//Guarda la informacion del monto ingresado por el usuario
+    var cuenta = document.getElementById("cuenta").value.trim();//Guarda la informacion de la cuenta ingresado por el usuario
+    //Validacion que se encarga de evaluar las variables declaradas anteriormente
+    //Valida si no estan vacias y si corresponden al tipo de dato solicitado
+    //La variable "validar" se encuentra en el script de validacion.js
+    //En la variable validar es como un arreglo que guarda los metodos que van a 
+    //servir para validar las variables
+    if( monto != '' &&  cuenta != '' && validar.monto(monto) && validar.numeroCedula(cuenta) && monto <= 2000000){
+        cedula = btoa(cedula);
+        cadena= "cedula=" + cedula + 
+                "&monto=" + monto;
+        $.ajax({
+            type:"POST",//Metodo de envio
+            url:"controller/val_transaccion.php",//Ruta destino a la cual se le va a enciar la variable
+            data:cadena,//La informacion que se va a enviar a la ruta destino
+            success:function(r){//Esta funcion recibe el valor retornado de la ruta destino
+                if(r==1){//Se valida si el valor retornado es igual a 1, pues esto es el resultado de la consulta sql, si se ejecuto sin ningun problema
+                    alertify.success('Registrado con exito'); //Se le alerta al usuario que el usuario ha sido registrado con exito  
+                    setTimeout(function(){ window.location = 'index.php';}, 1000);//Se espera 1 segundo para mostrar la alerta para redireccionarlo al login
+                }else if(r==2){//Si el resultado de la ruta destino es distinto a 1, entonces es porque hubo un problema al registrarse
+                alertify.error('El usuario ya existe');//Se alerta al usuario que no se pudo registrar
+                }else{
+                alertify.error('No se pudo registrar');//Se alerta al usuario que no se pudo registrar
+                }
             }
-        }
-        //La case active-menu sirve para dar color rojo a la opcion seleccionada del menu
-    });
+        });
+    }else{
+        console.log('Daots incorrectos');
+    }
+};
 
-    //Funcion que se ejecutal al dar click en el boton depositar de la presentacion
-    btndepositar.addEventListener("click", function(event){
-        event.preventDefault();//Previene que la etiqueta "a" ejecute el href
-        $("#view").load("pages/historial.php");//Cargar en la etiqueta con id view la vista solicitada
-        //EL siguiete for va a recorrer el arreglo que contiene el nombre de los
-        //id de las opciones del meu lateral, este for lo que hara sera cambiar
-        //las clases de cada elemento seleccionado, esto sirve para que cuando el usuario
-        //precione alguna opcion, esta se quede seleccionada con el color rojo
-        for (var i = 0; i < ids.length; i++) {
-            if (ids[i] == ids[1]) {//Si verdadero, se agrega la clase active-menu
-                $("#"+ids[i]+"").addClass("active-menu");
-            }else{//De lo contrrio, le quita la clase active-menu
-                $("#"+ids[i]+"").removeClass("active-menu")
-            }
+//Funcion que hace que haga que se devulva a la presentacion
+function cancelar(cancel){ 
+    $("#view").load("pages/presentacion.php");//Cargar en la etiqueta con id view la vista solicitada
+};
+//Funcion que se ejecutal al dar click en el boton transferir de la presentacion
+function btntransferir(){
+    $("#view").load("pages/transferir.php");//Cargar en la etiqueta con id view la vista solicitada
+    //EL siguiete for va a recorrer el arreglo que contiene el nombre de los
+    //id de las opciones del meu lateral, este for lo que hara sera cambiar
+    //las clases de cada elemento seleccionado, esto sirve para que cuando el usuario
+    //precione alguna opcion, esta se quede seleccionada con el color rojo
+    for (var i = 0; i < ids.length; i++) {
+        if (ids[i] == ids[0]) {//Si verdadero, se agrega la clase active-menu
+            $("#"+ids[i]+"").addClass("active-menu");
+        }else{//De lo contrrio, le quita la clase active-menu
+            $("#"+ids[i]+"").removeClass("active-menu")
         }
-        //La case active-menu sirve para dar color rojo a la opcion seleccionada del menu
-    });
+    }
+    //La case active-menu sirve para dar color rojo a la opcion seleccionada del menu
+};
 
-    //Funcion que se ejecutal al dar click en el boton retirar de la presentacion
-    btnretirar.addEventListener("click", function(event){
-        event.preventDefault();//Previene que la etiqueta "a" ejecute el href
-        $("#view").load("pages/historial.php");//Cargar en la etiqueta con id view la vista solicitada
-        //EL siguiete for va a recorrer el arreglo que contiene el nombre de los
-        //id de las opciones del meu lateral, este for lo que hara sera cambiar
-        //las clases de cada elemento seleccionado, esto sirve para que cuando el usuario
-        //precione alguna opcion, esta se quede seleccionada con el color rojo
-        for (var i = 0; i < ids.length; i++) {
-            if (ids[i] == ids[2]) {//Si verdadero, se agrega la clase active-menu
-                $("#"+ids[i]+"").addClass("active-menu");
-            }else{//De lo contrrio, le quita la clase active-menu
-                $("#"+ids[i]+"").removeClass("active-menu")
-            }
+//Funcion que se ejecutal al dar click en el boton depositar de la presentacion
+function btndepositar(){
+    $("#view").load("pages/depositar.php");//Cargar en la etiqueta con id view la vista solicitada
+    //EL siguiete for va a recorrer el arreglo que contiene el nombre de los
+    //id de las opciones del meu lateral, este for lo que hara sera cambiar
+    //las clases de cada elemento seleccionado, esto sirve para que cuando el usuario
+    //precione alguna opcion, esta se quede seleccionada con el color rojo
+    for (var i = 0; i < ids.length; i++) {
+        if (ids[i] == ids[1]) {//Si verdadero, se agrega la clase active-menu
+            $("#"+ids[i]+"").addClass("active-menu");
+        }else{//De lo contrrio, le quita la clase active-menu
+            $("#"+ids[i]+"").removeClass("active-menu")
         }
-        //La case active-menu sirve para dar color rojo a la opcion seleccionada del menu
-    });
-}, 1000);
+    }
+    //La case active-menu sirve para dar color rojo a la opcion seleccionada del menu
+};
+
+//Funcion que se ejecutal al dar click en el boton retirar de la presentacion
+function btnretirar(){
+    $("#view").load("pages/retirar.php");//Cargar en la etiqueta con id view la vista solicitada
+    //EL siguiete for va a recorrer el arreglo que contiene el nombre de los
+    //id de las opciones del meu lateral, este for lo que hara sera cambiar
+    //las clases de cada elemento seleccionado, esto sirve para que cuando el usuario
+    //precione alguna opcion, esta se quede seleccionada con el color rojo
+    for (var i = 0; i < ids.length; i++) {
+        if (ids[i] == ids[2]) {//Si verdadero, se agrega la clase active-menu
+            $("#"+ids[i]+"").addClass("active-menu");
+        }else{//De lo contrrio, le quita la clase active-menu
+            $("#"+ids[i]+"").removeClass("active-menu")
+        }
+    }
+    //La case active-menu sirve para dar color rojo a la opcion seleccionada del menu
+};

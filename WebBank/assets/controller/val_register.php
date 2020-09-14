@@ -23,20 +23,20 @@ if( isset($_POST['cedula']) && isset($_POST['name1']) &&
             $name2=$_POST['name2'];//Encriptada
             $name4=$_POST['name4'];//Encriptada
             //ejecucion de la consulta a la base de datos
-            $cedcontra = $mysql->efectuarConsulta("insert into usuario (numero_cedula, contrasena, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido) values('".$cedula."', '".$password."','".$name1."','".$name2."','".$name3."','".$name4."')");
+            $cedcontra = $mysql->efectuarConsulta("insert into usuario (numero_cedula, contrasena, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, saldo) values('".$cedula."', '".$password."','".$name1."','".$name2."','".$name3."','".$name4."', '1000')");
         }else{
             if (isset($_POST['name2'])) {
                 $name2=$_POST['name2'];//Encriptada
                 //ejecucion de la consulta a la base de datos
-                $cedcontra = $mysql->efectuarConsulta("insert into usuario (numero_cedula, contrasena, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido) values('".$cedula."', '".$password."','".$name1."','".$name2."','".$name3."', NULL)");
+                $cedcontra = $mysql->efectuarConsulta("insert into usuario (numero_cedula, contrasena, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, saldo) values('".$cedula."', '".$password."','".$name1."','".$name2."','".$name3."', NULL, '1000')");
             }else{
                 if (isset($_POST['name4'])) {
                     $name4=$_POST['name4'];//Encriptada
                     //ejecucion de la consulta a la base de datos
-                    $cedcontra = $mysql->efectuarConsulta("insert into usuario (numero_cedula, contrasena, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido) values('".$cedula."', '".$password."','".$name1."', NULL,'".$name3."','".$name4."')");
+                    $cedcontra = $mysql->efectuarConsulta("insert into usuario (numero_cedula, contrasena, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, saldo) values('".$cedula."', '".$password."','".$name1."', NULL,'".$name3."','".$name4."', '1000')");
                 }else{
                     //ejecucion de la consulta a la base de datos
-                    $cedcontra = $mysql->efectuarConsulta("insert into usuario (numero_cedula, contrasena, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido) values('".$cedula."', '".$password."','".$name1."', NULL,'".$name3."', NULL)");
+                    $cedcontra = $mysql->efectuarConsulta("insert into usuario (numero_cedula, contrasena, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, saldo) values('".$cedula."', '".$password."','".$name1."', NULL,'".$name3."', NULL, '1000')");
 
                 }
             }

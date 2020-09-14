@@ -17,25 +17,27 @@
             <div class="row">
                     <div class="col-md-12">
                         <h3>Informaci&oacute;n Basica</h3>
-                        <form role="form">
+                        <p>Puedes realizar una transferencia desde $100 hasta $2.000.000 </p>
+                        <div role="form">
                             <div class="form-group col-md-6">
                                 <label>N&uacute;mero de Cuenta</label>
-                                <input class="form-control" />
+                                <input id="cuenta" class="form-control" />
                             </div>
                             <div class="form-group col-md-6">
                                 <label>Monto a Transferir</label>
-                                <input class="form-control" />
+                                <input id="monto" class="form-control" />
+                                <span class="badge alert-info"> Recuerda ingresar el monto sin puntos ni comas, solo el numero</span>
                             </div>
                             
                             <div class="botones">
-                                <button type="reset" class="btn btn-default pull-md-8">Cancelar</button>
-                                <button type="submit" class="btn btn-primary">Transferir</button>
+                                <button onclick="cancelar()" class="btn btn-default pull-md-8">Cancelar</button>
+                                <button onclick="submittransferir()" class="btn btn-primary">Transferir</button>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-        <!-- End Form Elements -->
+    <!-- End Form Elements -->
 </div>

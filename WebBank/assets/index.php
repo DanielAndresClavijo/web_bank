@@ -63,7 +63,7 @@
                     <!--los botones funcionan gracias al index.js - este se encarga que dependiendo del id que
                     tenga el boton haga su respectiva funcion, en este caso es la redireccion a la pagina correspondiente-->             
                     <li>
-                        <a href="#" class="active-menu" id="transferir"><i class="fa fa fa-arrow-circle-up fa-3x"></i>Transferir</a>
+                        <a href="#" id="transferir"><i class="fa fa fa-arrow-circle-up fa-3x"></i>Transferir</a>
                     </li>
                         <li>
                         <a href="#" id="depositar"><i class="fa fa fa fa-cloud-download fa-3x"></i>Depositar</a>
@@ -119,9 +119,9 @@
     <script src="js/dataTables/dataTables.bootstrap.js"></script>
     <!-- JQUERY METIS MENU SCRIPTS -->
     <script src="js/jquery/jquery.metisMenu.js"></script>
-    <!-- CUSTOM SCRIPTS -->    
+    <!-- CUSTOM SCRIPTS -->  
+    <script src="js/scripts/validacion.js"></script>  
     <script src="js/scripts/funciones.js"></script>
     <script src="js/scripts/index.js"></script> 
 </body>
 </html>
-
