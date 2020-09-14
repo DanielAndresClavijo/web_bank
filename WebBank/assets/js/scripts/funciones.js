@@ -57,7 +57,7 @@ $("#registrar").click(function(event){
   //servir para validar las variables
   if( name1 != '' &&  name3 != '' && cedula != '' && password != '' && password2 != ''
       && validar.numeroCedula(cedula) && validar.siEsLaMismaContrasenna(password, password2) 
-      && validar.NombresApellidos(name1) && validar.NombresApellidos(name3)){
+      && validar.NombresApellidos(name1) && validar.NombresApellidos(name3) && validar.contrasenna(password)){
     //Encriptacion de las variables ingresadas por el usuario en base64
     cedula = btoa(cedula);
     name1 = btoa(name1);
@@ -82,7 +82,7 @@ $("#registrar").click(function(event){
         name4 = btoa(name4);
         cadena += "&name4=" + name4;//Se agrega el valor encriptado a la variable
       }else{//Si la validacion retorna FALSE entonces no se puede registrar el usuario
-        resultado = 1;//Resultado pasaria a ser igual a 1, lo que significa queno se realizara el registro
+        resultado = 1;//Resultado pasaria a ser igual a 1, lo que significa que no se realizara el registro
       }       
     }
     console.log(cadena);
