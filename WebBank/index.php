@@ -13,14 +13,17 @@ if(isset($_SESSION['id'])){
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Inicio de sesion - WEBBANK</title>
+	<!-- ALERTIFY STYLES-->
   <link rel="stylesheet" href="assets/css/alertify/alertify.css">
   <link rel="stylesheet" href="assets/css/alertify/bootstrap.css">
-  <link rel="stylesheet" href="assets/css/login.css">
+	<!-- MY STYLES-->
+  <link rel="stylesheet" href="assets/css/styles/login.css">
 </head>
 <body>
+  <!-- FORM-->
   <div class="form">
-    <h2>Login</h2>
+    <h2>INCIO DE SESION <br> WEB BANK</h2>
     <div class="input">
       <div class="inputBox">
         <label for="User">Cedula</label>
@@ -34,13 +37,18 @@ if(isset($_SESSION['id'])){
         <input type="button" id="ingresar" value="Ingresar">
       </div>      
     </div>
-    
     <p class="recuperar"><a href="register.php">Registrarme</a></p>
   </div>
-  <script src="assets/js/jquery-3.5.1.js"></script>  
-    <script src="assets/js/alertify.js"></script>
-  <script src="assets/js/validacion.js"></script>
-  <script src="assets/js/script.js"></script>
+  <!-- /. FORM-->
+  
+  <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+  <!-- JQUERY SCRIPTS -->
+  <script src="assets/js/jquery/jquery-3.5.1.js"></script>  
+  <!-- ALERTIFY SCRIPTS -->
+  <script src="assets/js/alertify/alertify.js"></script>
+  <!-- CUSTOM SCRIPTS -->
+  <script src="assets/js/scripts/validacion.js"></script>
+  <script src="assets/js/scripts/funciones.js"></script>
   
 </body>
 </html>

@@ -1,36 +1,38 @@
 <?php
     session_start();//Inicio de sesion
+    //Validacion para comprobar si ya se ha iniciado sesion
+    //Esto sirve para no permitir navegar entre paginas sin haberse logueado
     if(!isset($_SESSION['id'])){
-        header("location: ../index.php"); //no permite que se entre a las demas vistas por medio de la url
+        //no permite que se entre a las demas vistas por medio de la url
+        header("location: ../index.php");
     }
-    ?>
-    <!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Web Bank</title>
+    <title>WEB BANK</title>
     <!-- BOOTSTRAP STYLES-->
-    <link href="css/bootstrap.css" rel="stylesheet" />
-    
+    <link href="css/bootstrap/bootstrap.css" rel="stylesheet" />
+    <!-- ALERTIFU STYLES-->
     <link rel="stylesheet" href="css/alertify/alertify.css">
     <link rel="stylesheet" href="css/alertify/bootstrap.css">
-     <!-- FONTAWESOME STYLES-->
-    <link href="css/font-awesome.css" rel="stylesheet" />
+    <!-- FONTAWESOME STYLES-->
+    <link href="css/font-awesome/font-awesome.css" rel="stylesheet" />
     <!-- CUSTOM STYLES-->
-    <link href="css/custom.css" rel="stylesheet" />
-    
+    <link href="css/styles/custom.css" rel="stylesheet" />
     <!-- GOOGLE FONTS-->
-   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
-   <!-- TABLE STYLES-->
-  <link href="js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
-  
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <!-- TABLE STYLES-->
+    <link href="js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
 </head>
 <body>
     <!-- WRAPPER  -->
     <div id="wrapper">
         <!-- FIXME: NAV TOP - MENU SUPERIOR -->
         <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
+            <!-- FIXME: LINEAS DIAGONALES - Estas se muestran cuando la escala de la pantalla supera su tamaño minimo, sirven para expandir y contraer el menu -->
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -38,12 +40,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Web Bank</a> 
+                <a class="navbar-brand" href="index.php">Web Bank</a> 
             </div>
-            <div style="color: white;padding: 15px 50px 5px 50px;float: right;font-size: 16px;"> 
-                
+            <!-- FIXME: /. LINEAS DIAGONALES - Estas se muestran cuando la escala de la pantalla supera su tamaño minimo, sirven para expandir y contraer el menu -->
+            <!-- FIXME: Cerrar sesion -->
+            <div style="color: white;padding: 15px 50px 5px 50px;float: right;font-size: 16px;">
                 <a id="cerrar_session" class="btn btn-danger square-btn-adjust">Cerrar Sesi&oacute;n</a> 
             </div>
+            <!-- FIXME: /. Cerrar sesion -->
         </nav>   
         <!-- FIXME: /. NAV TOP - MENU SUPERIOR -->
 
@@ -55,9 +59,9 @@
                     <li class="text-center">
                         <img src="img/find_user.png" class="user-image img-responsive"/>
                     </li>
-                    <!-- /. Logo usuario  -->   
-                    <!--los botones funcionan gracias al custom.js - este se encarga que dependiendo de la clase que
-                    tenga el boton haga su respectiva funcion, en este caso es la redireccion a la pagina correspondiente-->                
+                    <!-- /. Logo usuario  -->      
+                    <!--los botones funcionan gracias al index.js - este se encarga que dependiendo del id que
+                    tenga el boton haga su respectiva funcion, en este caso es la redireccion a la pagina correspondiente-->             
                     <li>
                         <a href="#" class="active-menu" id="transferir"><i class="fa fa fa-arrow-circle-up fa-3x"></i>Transferir</a>
                     </li>
@@ -83,6 +87,7 @@
         <div id="page-wrapper" >
             <!-- PAGE INNER  -->
             <div id="page-inner">
+                <!-- ROW -->
                 <div class="row">
                     <div class="col-md-12">
                      <!--<h2>WEB BANK</h2>-->   
@@ -90,51 +95,9 @@
                     </div>
                 </div>              
                 <hr />
-                <!-- ROW -->
-                <!-- todo: Aqui se va a cargar las paginas  -->
+                <!-- /. ROW -->
                 <div id="view">
-                    <div class="col-md-4 col-sm-4">
-                        <div class="panel panel-danger  text-center">
-                            <div class="panel-heading">
-                                <h3>Transferir</h3>
-                            </div>
-                            <div class="panel-body">
-                                <h4>¿Ya hiciste tu transferencia?</h4>
-                                Aquí puedes transferir dinero a otras cuentas que tenga vínculo con Web Bank.
-                            </div>
-                            <div class="panel-footer">
-                                <button type="button" class="btn btn-lg btn-block btn-danger">Ir allí</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-4">
-                        <div class="panel panel-danger  text-center">
-                            <div class="panel-heading">
-                                <h3>Depositar</h3>
-                            </div>
-                            <div class="panel-body">
-                                <h4>¿Te interesa hacer un depósito?</h4>
-                                Puedes depositar el monto deseado desde 1000 pesos a la cuenta que quieras sin costo.
-                            </div>
-                            <div class="panel-footer">
-                                <button type="button" class="btn btn-lg btn-block btn-danger">Ir allí</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-4">
-                        <div class="panel panel-danger  text-center">
-                            <div class="panel-heading">
-                                <h3>Retirar</h3>
-                            </div>
-                            <div class="panel-body">
-                                <h4>Retira tu dinero cuando quieras</h4>
-                                Con Web Bank tienes la libertidad de escoger el momento y lugar de retirar.
-                            </div>
-                            <div class="panel-footer">
-                                <button type="button" class="btn btn-lg btn-block btn-danger">Ir allí</button>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- View: Aqui se va a cargar las paginas  -->
                 </div> 
                 <!-- /. ROW -->         
             </div>
@@ -146,18 +109,19 @@
 
     <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
     <!-- JQUERY SCRIPTS -->
-    <script src="js/jquery-3.5.1.js"></script> 
-    <script src="js/alertify.js"></script>
-      <!-- BOOTSTRAP SCRIPTS -->
-    <script src="js/bootstrap.min.js"></script>
-    <!-- METISMENU SCRIPTS -->
-    <script src="js/jquery.metisMenu.js"></script>
+    <script src="js/jquery/jquery-3.5.1.js"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+    <!-- ALERTIFY STYLES--> 
+    <script src="js/alertify/alertify.js"></script>
     <!-- DATA TABLE SCRIPTS -->
     <script src="js/dataTables/jquery.dataTables.js"></script>
     <script src="js/dataTables/dataTables.bootstrap.js"></script>
-      <!-- CUSTOM SCRIPTS -->    
-    <script src="js/custom.js"></script> 
-    <script src="js/script.js"></script>
+    <!-- JQUERY METIS MENU SCRIPTS -->
+    <script src="js/jquery/jquery.metisMenu.js"></script>
+    <!-- CUSTOM SCRIPTS -->    
+    <script src="js/scripts/funciones.js"></script>
+    <script src="js/scripts/index.js"></script> 
 </body>
 </html>
 
