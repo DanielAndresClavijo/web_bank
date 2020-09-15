@@ -218,14 +218,14 @@ function submittransferir(){
                         }
                     }, 1000);//Se espera 1 segundo para mostrar la alerta para redireccionarlo al login
                 }else if(r==2){//Si el resultado de la ruta destino es distinto a 1, entonces es porque hubo un problema al registrarse
-                alertify.error('El usuario ya existe');//Se alerta al usuario que no se pudo registrar
+                    alertify.error('El usuario ya existe');//Se alerta al usuario que no se pudo registrar
                 }else{
-                alertify.error('No se pudo realizar la transferencia');//Se alerta al usuario que no se pudo registrar
+                    alertify.error('No se pudo realizar la transferencia');//Se alerta al usuario que no se pudo registrar
                 }
             }
         });
     }else{
-        console.log('Daots incorrectos');
+        alertify.error('Datos incorrectos');//Se alerta al usuario que no se pudo registrar
     }
 };
 

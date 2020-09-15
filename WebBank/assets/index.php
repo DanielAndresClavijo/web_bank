@@ -1,10 +1,20 @@
 <?php
     session_start();//Inicio de sesion
+    $id_usuario1 = $_SESSION['id'];//Id del usuario actual
     //Validacion para comprobar si ya se ha iniciado sesion
     //Esto sirve para no permitir navegar entre paginas sin haberse logueado
     if(!isset($_SESSION['id'])){
         //no permite que se entre a las demas vistas por medio de la url
         header("location: ../index.php");
+    }
+    require_once 'model/MySQL.php'; 
+    $mysql = new MySQL(); //se declara un nuevo array
+    $mysql->conectar();//Conexion a la base de datos
+    $NombreUsuario = $mysql->efectuarConsulta("SELECT primer_nombre, primer_apellido FROM usuario WHERE id_usuario = '".$id_usuario1."'");
+    //Este while recorre las filas encontradas en la consulta anterior
+    while ($resultado= mysqli_fetch_assoc($NombreUsuario)){
+        $nombre= base64_decode($resultado["primer_nombre"]);//Guarda el el primer nombre
+        $apellido= base64_decode($resultado["primer_apellido"]);//Guarda el primer apellido
     }
 ?>
 <!DOCTYPE html>
@@ -82,7 +92,7 @@
             </div> 
         </nav>  
         <!-- TODO: /. NAV SIDE - MENU LATERAL IZQUIERDO  -->
-
+        
         <!-- PAGE WRAPPER  -->
         <div id="page-wrapper" >
             <!-- PAGE INNER  -->
@@ -91,7 +101,7 @@
                 <div class="row">
                     <div class="col-md-12">
                      <!--<h2>WEB BANK</h2>-->   
-                        <h4>Bienvenido Jhon Deo , disfruta de tu estadia. </h4>
+                        <h4>Bienvenido <?php echo $nombre.' '.$apellido; ?> , disfruta de tu estadia. </h4>
                     </div>
                 </div>              
                 <hr />
