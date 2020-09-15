@@ -206,9 +206,9 @@ function submittransferir(){
                     setTimeout(function(){ 
                         $("#view").load("pages/consultar.php");//Cargar en la etiqueta con id view la vista solicitada
                         //EL siguiete for va a recorrer el arreglo que contiene el nombre de los
-                        //id de las opciones del meu lateral, este for lo que hara sera cambiar
+                        //id de las opciones del menu lateral, este for lo que hara sera cambiar
                         //las clases de cada elemento seleccionado, esto sirve para que cuando el usuario
-                        //precione alguna opcion, esta se quede seleccionada con el color rojo
+                        //presione alguna opcion, esta se quede seleccionada con el color rojo
                         for (var i = 0; i < ids.length; i++) {
                             if (ids[i] == ids[3]) {//Si verdadero, se agrega la clase active-menu
                                 $("#"+ids[i]+"").addClass("active-menu");
@@ -234,20 +234,47 @@ function cancelar(cancel){
     $("#view").load("pages/presentacion.php");//Cargar en la etiqueta con id view la vista solicitada
 };
 //Funcion que se ejecutal al dar click en el boton transferir de la presentacion
-function btntransferir(){
-    $("#view").load("pages/transferir.php");//Cargar en la etiqueta con id view la vista solicitada
-    //EL siguiete for va a recorrer el arreglo que contiene el nombre de los
-    //id de las opciones del meu lateral, este for lo que hara sera cambiar
-    //las clases de cada elemento seleccionado, esto sirve para que cuando el usuario
-    //precione alguna opcion, esta se quede seleccionada con el color rojo
-    for (var i = 0; i < ids.length; i++) {
-        if (ids[i] == ids[0]) {//Si verdadero, se agrega la clase active-menu
-            $("#"+ids[i]+"").addClass("active-menu");
-        }else{//De lo contrrio, le quita la clase active-menu
-            $("#"+ids[i]+"").removeClass("active-menu")
-        }
+function submitdepositar(){
+    var monto1 = document.getElementById("monto1").value.trim();//Guarda la informacion del monto ingresado por el usuario
+    //Validacion que se encarga de evaluar las variables declaradas anteriormente
+    //Valida si no estan vacias y si corresponden al tipo de dato solicitado
+    //La variable "validar" se encuentra en el script de validacion.js
+    //En la variable validar es como un arreglo que guarda los metodos que van a 
+    //servir para validar las variables
+    if(monto1 != '' && validar.monto(monto1) && monto1 >= 1000 && monto1 <= 2000000){
+        //cedula = btoa(cuenta);
+        cadena1 = "monto=" + monto1;
+        $.ajax({
+            type:"POST",//Metodo de envio
+            url:"controller/val_depositar.php",//Ruta destino a la cual se le va a enciar la variable
+            data:cadena1,//La informacion que se va a enviar a la ruta destino
+            success:function(r){//Esta funcion recibe el valor retornado de la ruta destino
+                if(r==1){//Se valida si el valor retornado es igual a 1, pues esto es el resultado de la consulta sql, si se ejecuto sin ningun problema
+                    alertify.success('Registrado con exito'); //Se le alerta al usuario que el usuario ha sido registrado con exito  
+                    setTimeout(function(){ 
+                        $("#view").load("pages/consultar.php");//Cargar en la etiqueta con id view la vista solicitada
+                        //EL siguiete for va a recorrer el arreglo que contiene el nombre de los
+                        //id de las opciones del menu lateral, este for lo que hara sera cambiar
+                        //las clases de cada elemento seleccionado, esto sirve para que cuando el usuario
+                        //presione alguna opcion, esta se quede seleccionada con el color rojo
+                        for (var i = 0; i < ids.length; i++) {
+                            if (ids[i] == ids[3]) {//Si verdadero, se agrega la clase active-menu
+                                $("#"+ids[i]+"").addClass("active-menu");
+                            }else{//De lo contrrio, le quita la clase active-menu
+                                $("#"+ids[i]+"").removeClass("active-menu")
+                            }
+                        }
+                    }, 1000);//Se espera 1 segundo para mostrar la alerta para redireccionarlo al login
+                }else if(r==2){//Si el resultado de la ruta destino es distinto a 1, entonces es porque hubo un problema al registrarse
+                    alertify.error('El usuario ya existe');//Se alerta al usuario que no se pudo registrar
+                }else{
+                    alertify.error('No se pudo realizar el deposito');//Se alerta al usuario que no se pudo depositar el monto
+                }
+            }
+        });
+    }else{
+        alertify.error('Datos incorrectos');//Se alerta al usuario que no se pudo hacer la operación
     }
-    //La case active-menu sirve para dar color rojo a la opcion seleccionada del menu
 };
 
 //Funcion que se ejecutal al dar click en el boton depositar de la presentacion

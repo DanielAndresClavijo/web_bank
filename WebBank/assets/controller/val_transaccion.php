@@ -16,7 +16,7 @@ if(isset($_POST['cedula']) && isset($_POST['monto'])){
     }
     //Consulta para verificar si el usuario a enviar la transferencia existe y extraer el id y el saldo 
     $EncontrarUsuario2 = $mysql->efectuarConsulta("SELECT id_usuario, saldo FROM usuario WHERE numero_cedula = '".$cedula."'");
-    //Se valida si el saldo del usuairo 1 es mayo igual que el monto que quiera retirar, ademas se valida si el usuario a depositar existe
+    //Se valida si el saldo del usuario 1 es mayor igual que el monto que quiera retirar, ademas se valida si el usuario a depositar existe
     if($saldo1 >= $monto && mysqli_num_rows($EncontrarUsuario2) > 0){
         //Este while recorre las filas encontradas en la consulta del usuario2
         while ($resultado= mysqli_fetch_assoc($EncontrarUsuario2)){
