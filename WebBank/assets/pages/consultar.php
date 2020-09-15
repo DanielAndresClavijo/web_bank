@@ -23,14 +23,12 @@
   <thead>
     <tr>
       <th scope="col">N&uacute;mero de Cuenta</th>
-      <th scope="col">Tipo de Cuenta</th>
       <th scope="col">Saldo Disponible</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th scope="row"><?php echo $cuenta; ?></th>
-      <td>Cuenta de ahorros</td>
       <td>$ <?php echo $saldo; ?></td>
     </tr>
   </tbody>

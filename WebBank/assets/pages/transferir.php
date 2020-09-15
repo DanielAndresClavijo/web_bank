@@ -26,7 +26,7 @@
             <div class="row">
                     <div class="col-md-12">
                         <h3>Informaci&oacute;n Basica</h3>
-                        <p>Puedes realizar una transferencia desde $100 hasta $2.000.000 (Saldo actula: $<?php echo $saldo; ?>) </p>
+                        <p>Puedes realizar una transferencia desde $100 hasta $2.000.000 (Saldo actul: $<?php echo $saldo; ?>) </p>
                         <div role="form">
                             <div class="form-group col-md-6">
                                 <label>N&uacute;mero de Cuenta</label>
