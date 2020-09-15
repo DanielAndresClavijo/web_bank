@@ -1,11 +1,11 @@
 <?php 
-    if(isset($_POST['monto1'])){
+    if(isset($_POST['monto'])){
         require_once '../model/MySQL.php'; 
         $mysql = new MySQL(); //se declara un nuevo array
         $mysql->conectar();//Conexion a la base de datos
         session_start();//Inicio de sesion
         $id_usuario1 = $_SESSION['id'];//Id del usuario actual
-        $monto=$_POST['monto1'];
+        $monto=$_POST['monto'];
         //Consulta para saber el saldo del usuario que quiere hacer la transaccion
         $saldoUsuario1 = $mysql->efectuarConsulta("SELECT saldo FROM usuario WHERE id_usuario = '".$id_usuario1."'");
         //Este while recorre las filas encontradas en la consulta anterior
@@ -29,3 +29,4 @@
         $mysql->desconectar();
     } 
 ?>
+
