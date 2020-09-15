@@ -193,7 +193,7 @@ function submittransferir(){
     //En la variable validar es como un arreglo que guarda los metodos que van a 
     //servir para validar las variables
     if( monto != '' &&  cuenta != '' && validar.monto(monto) && validar.numeroCedula(cuenta) && monto <= 2000000){
-        cedula = btoa(cedula);
+        cedula = btoa(cuenta);
         cadena= "cedula=" + cedula + 
                 "&monto=" + monto;
         $.ajax({
@@ -203,11 +203,24 @@ function submittransferir(){
             success:function(r){//Esta funcion recibe el valor retornado de la ruta destino
                 if(r==1){//Se valida si el valor retornado es igual a 1, pues esto es el resultado de la consulta sql, si se ejecuto sin ningun problema
                     alertify.success('Registrado con exito'); //Se le alerta al usuario que el usuario ha sido registrado con exito  
-                    setTimeout(function(){ window.location = 'index.php';}, 1000);//Se espera 1 segundo para mostrar la alerta para redireccionarlo al login
+                    setTimeout(function(){ 
+                        $("#view").load("pages/consultar.php");//Cargar en la etiqueta con id view la vista solicitada
+                        //EL siguiete for va a recorrer el arreglo que contiene el nombre de los
+                        //id de las opciones del meu lateral, este for lo que hara sera cambiar
+                        //las clases de cada elemento seleccionado, esto sirve para que cuando el usuario
+                        //precione alguna opcion, esta se quede seleccionada con el color rojo
+                        for (var i = 0; i < ids.length; i++) {
+                            if (ids[i] == ids[3]) {//Si verdadero, se agrega la clase active-menu
+                                $("#"+ids[i]+"").addClass("active-menu");
+                            }else{//De lo contrrio, le quita la clase active-menu
+                                $("#"+ids[i]+"").removeClass("active-menu")
+                            }
+                        }
+                    }, 1000);//Se espera 1 segundo para mostrar la alerta para redireccionarlo al login
                 }else if(r==2){//Si el resultado de la ruta destino es distinto a 1, entonces es porque hubo un problema al registrarse
                 alertify.error('El usuario ya existe');//Se alerta al usuario que no se pudo registrar
                 }else{
-                alertify.error('No se pudo registrar');//Se alerta al usuario que no se pudo registrar
+                alertify.error('No se pudo realizar la transferencia');//Se alerta al usuario que no se pudo registrar
                 }
             }
         });

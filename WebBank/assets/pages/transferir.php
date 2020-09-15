@@ -26,9 +26,10 @@
                             <div class="form-group col-md-6">
                                 <label>Monto a Transferir</label>
                                 <input id="monto" class="form-control" />
+                            </div>
+                            <div class="form-group col-md-6">
                                 <span class="badge alert-info"> Recuerda ingresar el monto sin puntos ni comas, solo el numero</span>
                             </div>
-                            
                             <div class="botones">
                                 <button onclick="cancelar()" class="btn btn-default pull-md-8">Cancelar</button>
                                 <button onclick="submittransferir()" class="btn btn-primary">Transferir</button>

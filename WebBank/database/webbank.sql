@@ -1,81 +1,109 @@
--- MySQL Workbench Forward Engineering
+-- phpMyAdmin SQL Dump
+-- version 5.0.2
+-- https://www.phpmyadmin.net/
+--
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 14-09-2020 a las 22:58:13
+-- Versión del servidor: 10.4.14-MariaDB
+-- Versión de PHP: 7.4.9
 
-SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
-SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
 
--- -----------------------------------------------------
--- Schema webbank
--- -----------------------------------------------------
 
--- -----------------------------------------------------
--- Schema webbank
--- -----------------------------------------------------
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Base de datos: `webbank`
+--
+
 CREATE SCHEMA IF NOT EXISTS `webbank` CHARACTER SET utf8 COLLATE utf8_spanish_ci;
 USE `webbank` ;
 
--- -----------------------------------------------------
--- Table `webbank`.`usuario`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `webbank`.`usuario` (
-  `id_usuario` INT NOT NULL AUTO_INCREMENT,
-  `numero_cedula` VARBINARY(50) NOT NULL,
-  `contrasena` VARBINARY(50) NOT NULL,
-  `primer_nombre` VARBINARY(50) NOT NULL,
-  `segundo_nombre` VARBINARY(50) NULL,
-  `primer_apellido` VARBINARY(50) NOT NULL,
-  `segundo_apellido` VARBINARY(50) NULL,
-  `saldo` VARBINARY(50) NULL DEFAULT 0,
-  PRIMARY KEY (`id_usuario`),
-  UNIQUE INDEX `numero_celular_UNIQUE` (`numero_cedula` ASC) ,
-  UNIQUE INDEX `id_usuario_UNIQUE` (`id_usuario` ASC) )
-ENGINE = InnoDB;
+-- --------------------------------------------------------
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuario`
+--
+
+CREATE TABLE `webbank`.`usuario` (
+  `id_usuario` int(11) NOT NULL,
+  `numero_cedula` varbinary(50) NOT NULL,
+  `contrasena` varbinary(50) NOT NULL,
+  `primer_nombre` varbinary(50) NOT NULL,
+  `segundo_nombre` varbinary(50) DEFAULT NULL,
+  `primer_apellido` varbinary(50) NOT NULL,
+  `segundo_apellido` varbinary(50) DEFAULT NULL,
+  `saldo` varbinary(50) DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Estructura de tabla para la tabla `historial`
+--
+
+CREATE TABLE `webbank`.`historial` (
+  `id_historial` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  `cantidad` int(11) NOT NULL,
+  `nombre_transacion` varchar(25) COLLATE utf8_spanish_ci NOT NULL,
+  `fecha` date NOT NULL
+
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`id_usuario`),
+  ADD UNIQUE KEY `numero_celular_UNIQUE` (`numero_cedula`),
+  ADD UNIQUE KEY `id_usuario_UNIQUE` (`id_usuario`);
+
+--
+-- Indices de la tabla `historial`
+--
+ALTER TABLE `webbank`.`historial`
+  ADD PRIMARY KEY (`id_historial`,`id_usuario`),
+  ADD UNIQUE KEY `id_historial_UNIQUE` (`id_historial`),
+  ADD KEY `fk_usuario_has_transacion_usuario1_idx` (`id_usuario`);
 
 
--- -----------------------------------------------------
--- Table `webbank`.`tipo_transacion`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `webbank`.`tipo_transacion` (
-  `id_transacion` INT NOT NULL AUTO_INCREMENT,
-  `nombre_transacion` VARCHAR(50) NOT NULL,
-  PRIMARY KEY (`id_transacion`),
-  UNIQUE INDEX `id_transacion_UNIQUE` (`id_transacion` ASC) )
-ENGINE = InnoDB;
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
 
+--
+-- AUTO_INCREMENT de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
--- -----------------------------------------------------
--- Table `webbank`.`historial`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `webbank`.`historial` (
-  `id_historial` INT NOT NULL AUTO_INCREMENT,
-  `id_usuario` INT NOT NULL,
-  `id_usuario2` INT NULL,
-  `id_transacion` INT NOT NULL,
-  `cantidad` INT NOT NULL,
-  `fecha` DATE NOT NULL,
-  PRIMARY KEY (`id_historial`, `id_usuario`, `id_transacion`),
-  INDEX `fk_usuario_has_transacion_transacion1_idx` (`id_transacion` ASC) ,
-  INDEX `fk_usuario_has_transacion_usuario1_idx` (`id_usuario` ASC) ,
-  INDEX `fk_usuario_has_transacion_usuario2_idx` (`id_usuario2` ASC) ,
-  UNIQUE INDEX `id_historial_UNIQUE` (`id_historial` ASC) ,
-  CONSTRAINT `fk_usuario_has_transacion_usuario1`
-    FOREIGN KEY (`id_usuario`)
-    REFERENCES `webbank`.`usuario` (`id_usuario`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_usuario_has_transacion_usuario2`
-    FOREIGN KEY (`id_usuario2`)
-    REFERENCES `webbank`.`usuario` (`id_usuario`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_usuario_has_transacion_transacion1`
-    FOREIGN KEY (`id_transacion`)
-    REFERENCES `webbank`.`tipo_transacion` (`id_transacion`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+--
+-- AUTO_INCREMENT de la tabla `historial`
+--
+ALTER TABLE `historial`
+  MODIFY `id_historial` int(11) NOT NULL AUTO_INCREMENT;
 
+--
+-- Restricciones para tablas volcadas
+--
 
-SET SQL_MODE=@OLD_SQL_MODE;
-SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
-SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+--
+-- Filtros para la tabla `historial`
+--
+ALTER TABLE `historial`
+  ADD CONSTRAINT `fk_usuario_has_transacion_usuario1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
