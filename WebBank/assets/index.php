@@ -67,7 +67,7 @@
                 <ul class="nav" id="main-menu">
                     <!-- Logo usuario  -->
                     <li class="text-center">
-                        <img src="img/find_user.png" class="user-image img-responsive"/>
+                        <img src="img/logo.png" class="user-image img-responsive"/>
                     </li>
                     <!-- /. Logo usuario  -->      
                     <!--los botones funcionan gracias al index.js - este se encarga que dependiendo del id que
