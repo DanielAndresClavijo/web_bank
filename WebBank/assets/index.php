@@ -49,14 +49,16 @@
     <!-- ALERTIFU STYLES-->
     <link rel="stylesheet" href="css/alertify/alertify.css">
     <link rel="stylesheet" href="css/alertify/bootstrap.css">
+    <!-- TABLE STYLES-->
+    <link href="css/dataTables/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="css/dataTables/responsive.dataTables.min.css" rel="stylesheet" />
     <!-- FONTAWESOME STYLES-->
     <link href="css/font-awesome/font-awesome.css" rel="stylesheet" />
     <!-- CUSTOM STYLES-->
     <link href="css/styles/custom.css" rel="stylesheet" />
     <!-- GOOGLE FONTS-->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
-    <!-- TABLE STYLES-->
-    <link href="js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
+    
 </head>
 <body>
     <!-- WRAPPER  -->
@@ -156,8 +158,8 @@
     <!-- ALERTIFY STYLES--> 
     <script src="js/alertify/alertify.js"></script>
     <!-- DATA TABLE SCRIPTS -->
-    <script src="js/dataTables/jquery.dataTables.js"></script>
-    <script src="js/dataTables/dataTables.bootstrap.js"></script>
+    <script src="js/dataTables/jquery.dataTables.min.js"></script>
+    <script src="js/dataTables/dataTables.responsive.min.js"></script>
     <!-- JQUERY METIS MENU SCRIPTS -->
     <script src="js/jquery/jquery.metisMenu.js"></script>
     <!-- CUSTOM SCRIPTS -->  
