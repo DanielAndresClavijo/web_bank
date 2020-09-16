@@ -166,6 +166,24 @@ consultar.addEventListener("click", function(event){
 historial.addEventListener("click", function(event){
     event.preventDefault();//Previene que la etiqueta "a" ejecute el href
     $("#view").load("pages/historial.php");//Cargar en la etiqueta con id view la vista solicitada
+    setTimeout(
+        '$("#transferencias").load("pages/tablas/tablatransferencias.php");'//Cargar en la etiqueta con id view la vista solicitada
+    ,50);
+    setTimeout(function() {
+        $("#transferencias1").load("pages/tablas/tablatransferencia1.php");//Cargar en la etiqueta con id view la vista solicitada
+        setTimeout(function() {
+            $('#transacciont1').DataTable( {
+                "ajax": "pages/tablas/informacionTablas1.php",
+                "columns": [
+                    { "data": "name" },
+                    { "data": "position" },
+                    { "data": "salary" },
+                    { "data": "start_date" }
+                ]
+            } );
+        },50);
+        
+    },100);
     //EL siguiete for va a recorrer el arreglo que contiene el nombre de los
     //id de las opciones del meu lateral, este for lo que hara sera cambiar
     //las clases de cada elemento seleccionado, esto sirve para que cuando el usuario
@@ -370,3 +388,86 @@ function btnretirar(){
     }
     //La case active-menu sirve para dar color rojo a la opcion seleccionada del menu
 };
+
+/*====================================
+    DATA TABLES
+======================================*/
+
+//Funcion que se ejecuta al dar click en el boton transacciont1 de la presentacion
+function transacciont(){
+    $("#transferencias").load("pages/tablas/tablatransferencias.php");//Cargar en la etiqueta con id view la vista solicitada
+    setTimeout(function() {
+        $("#transferencias1").load("pages/tablas/tablatransferencia1.php");//Cargar en la etiqueta con id view la vista solicitada
+        setTimeout(function() {
+            $('#transacciont1').DataTable( {
+                "ajax": "pages/tablas/informacionTablas1.php",
+                "columns": [
+                    { "data": "name" },
+                    { "data": "position" },
+                    { "data": "salary" },
+                    { "data": "start_date" }
+                ]
+            } );
+        },50);
+    },100);
+}
+
+//Funcion que se ejecuta al dar click en el boton transacciont1 de la presentacion
+function transacciond(){
+    $("#transferencias").load("pages/tablas/tablaDepositos.php");//Cargar en la etiqueta con id view la vista solicitada
+    setTimeout(function() {
+        $('#depositos').DataTable( {
+            "ajax": "pages/tablas/informacionTablas3.php",
+            "columns": [
+                { "data": "salary" },
+                { "data": "start_date" }
+            ]
+        } );
+    },50);
+}
+
+//Funcion que se ejecuta al dar click en el boton transacciont1 de la presentacion
+function transaccionr(){
+    $("#transferencias").load("pages/tablas/tablaRetiros.php");//Cargar en la etiqueta con id view la vista solicitada
+    setTimeout(function() {
+        $('#retiros').DataTable( {
+            "ajax": "pages/tablas/informacionTablas4.php",
+            "columns": [
+                { "data": "salary" },
+                { "data": "start_date" }
+            ]
+        } );
+    },50);
+}
+
+//Funcion que se ejecuta al dar click en el boton transacciont1 de la presentacion
+function transacciont1(){
+    $("#transferencias1").load("pages/tablas/tablatransferencia1.php");//Cargar en la etiqueta con id view la vista solicitada
+    setTimeout(function() {
+        $('#transacciont1').DataTable( {
+            "ajax": "pages/tablas/informacionTablas1.php",
+            "columns": [
+                { "data": "name" },
+                { "data": "position" },
+                { "data": "salary" },
+                { "data": "start_date" }
+            ]
+        } );
+    },50);
+}
+
+//Funcion que se ejecuta al dar click en el boton transacciont1 de la presentacion
+function transacciont2(){
+    $("#transferencias1").load("pages/tablas/tablatransferencia2.php");//Cargar en la etiqueta con id view la vista solicitada
+    setTimeout(function() {
+        $('#transacciont1').DataTable( {
+            "ajax": "pages/tablas/informacionTablas2.php",
+            "columns": [
+                { "data": "name" },
+                { "data": "position" },
+                { "data": "salary" },
+                { "data": "start_date" }
+            ]
+        } );
+    },50);
+}
