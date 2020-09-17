@@ -26,7 +26,7 @@
             <div class="row">
                     <div class="col-md-12">
                         <h3>Informaci&oacute;n Basica</h3>
-                        <p>Fondos actuales: $<?php echo $saldo; ?>. <br>Puedes retirar como m&iacute;nimo $1000 y como m&aacute;ximo $<?php echo $saldo; ?>.</p>
+                        <p>Fondos actuales: $<?php echo $saldo; ?>. <br>Puedes retirar como m&iacute;nimo $1 y como m&aacute;ximo $2000000.</p>
                         <div role="form">
                             <div class="form-group col-md-6">
                                 <label>Monto a Retirar</label>
