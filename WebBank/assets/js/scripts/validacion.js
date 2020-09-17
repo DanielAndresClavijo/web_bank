@@ -1,7 +1,7 @@
 //Arreglo que guarda funciones para validar
 var validar = {
   numeroCedula:function(str) {//Funcion para validar numero de cedula
-    var pattern = /^[0-9]{8,10}$/;//Este formato solo permite de 8 a 10 numeros positivos
+    var pattern = /^[0-9]{6,10}$/;//Este formato solo permite de 6 a 10 numeros positivos
     return pattern.test(str);  // returns a boolean (TRUE: Si se cumple el pattern, FALSE: Si no se cumple el pattern)
   },
   contrasenna:function(str){//Funcion para validar contraseña
