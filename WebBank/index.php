@@ -44,7 +44,7 @@ if(isset($_SESSION['id'])){
 <body>
   <!-- FORM-->
   <div class="form">
-    <h2>INCIO DE SESION <br> WEB BANK</h2>
+    <h2>INICIO DE SESION <br> WEB BANK</h2>
     <div class="input">
       <div class="inputBox">
         <label for="User">Cedula</label>

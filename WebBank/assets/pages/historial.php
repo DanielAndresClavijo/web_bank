@@ -13,7 +13,7 @@
   <div class="col-md-12 col-sm-12">
     <div class="panel panel-default">
       <div class="panel-heading">
-        Historial de transacci&iacute;n
+        Historial de transacci&oacute;n
       </div>
       <div class="panel-body">
         <ul class="nav nav-tabs">
